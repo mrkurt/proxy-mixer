@@ -4,12 +4,10 @@
   
   <body>
     <script runat="edge">
-      var result = Mixer('nav2.html');
-      if(result === true){
-        //success
-      }else{
-        document.writeln("Request for " + result['url'] + " failed");
-      }
+      Mixer('nav2.html', {
+      	timeout: 200, //in ms
+      	errors : {default: 'Failed', not_found: 'Content not found', timeout: 'Content timed out'}
+      });
     </script>
     <div id="content">
       <p>Hello, welcome to my mixed up page of content.  This is a mix of 3 different includes.</p>

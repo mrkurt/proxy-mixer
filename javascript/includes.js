@@ -1,25 +1,28 @@
 if(window.MixerOptions == undefined){
   MixerOptions = {};
   MixerOptions.mode = 'client';
+  MixerOptions.mode.error_messages = {};
 }
 
 if(window.Mixer == undefined){
-  Mixer = function(src){
-    if(Mixer.is_client_side()){
-      return Mixer.client_include(src);
+  Mixer = function(src, options){
+    if(Mixer.options == undefined || Mixer.options.mode == undefined || Mixer.options.mode == 'client'){
+      var result = Mixer.client_include(src);
+      
+      if(result !== true){
+      	if(options != undefined && options.errors != undefined){
+      		if(result.status == 404 && options.errors.not_found != undefined){
+      			document.writeln(options.errors.not_found);
+      		}else if(options.errors.default != undefined){
+      			document.writeln(options.errors.default);
+      		}else{
+      			document.writeln("Unable to process include, no error specified");
+      		}
+      	}
+      }
     }else{
       document.writeln('Server side!: ' + src);
     }
-  };
-  
-  Mixer.echo = function(text){
-    if(Mixer.is_client_side()){
-      
-    }
-  };
-  
-  Mixer.is_client_side = function(src){
-    return Mixer.options == undefined || Mixer.options.mode == undefined || Mixer.options.mode == 'client');  
   };
   
   Mixer.client_include = function(src){
@@ -27,6 +30,7 @@ if(window.Mixer == undefined){
     
     var req = new XMLHttpRequest();
     req.open('GET', s, false);
+    console.debug(req);
     req.send(null);
     if(req.status == 200){
       document.writeln(req.responseText);
