@@ -1,17 +1,17 @@
-<script src="includes.js" runat="edge"></script>
+<script src="includes.js" runat="proxy"></script>
 <html>
-  <script runat="edge">Mixer('header.html');</script>
+  <script runat="proxy">Mixer('header.html');</script>
   
   <body>
-    <script runat="edge">
-      Mixer('nav2.html', {
+    <script runat="proxy">
+      Mixer('nav.html', {
       	timeout: 200, //in ms
-      	errors : {default: 'Failed', not_found: 'Content not found', timeout: 'Content timed out'}
+      	errors : {generic: 'Failed', not_found: 'Content not found', timeout: 'Content timed out'}
       });
     </script>
     <div id="content">
       <p>Hello, welcome to my mixed up page of content.  This is a mix of 3 different includes.</p>
     </div>
-    <script runat="edge">Mixer('footer.html');</script>
+    <script runat="proxy">Mixer('footer.html');</script>
   </body>
 </html>
