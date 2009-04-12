@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+import unittest
+from proxyjs.tests import parsing
+
+parsing.TestParser.fixtures = './examples/'
+
+suite = unittest.TestLoader().loadTestsFromTestCase(parsing.TestParser)
+unittest.TextTestRunner(verbosity=2).run(suite)
