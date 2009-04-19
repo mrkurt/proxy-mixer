@@ -1,8 +1,13 @@
 #!/usr/bin/env python
 import unittest
-from proxyjs.tests import parsing
+from proxyjs.tests import *
 
-parsing.TestParser.fixtures = './examples/'
+javascript.TestExtractor.fixtures = './examples/'
 
-suite = unittest.TestLoader().loadTestsFromTestCase(parsing.TestParser)
+print "\nRunning Javascript Tests:"
+suite = unittest.TestLoader().loadTestsFromModule(javascript)
+unittest.TextTestRunner(verbosity=2).run(suite)
+
+print "\nRunning Proxy Tests:"
+suite = unittest.TestLoader().loadTestsFromModule(proxy)
 unittest.TextTestRunner(verbosity=2).run(suite)
