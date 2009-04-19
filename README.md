@@ -1,6 +1,11 @@
 # Proxy Mixer
 This is a very, very early stage attempt to creating a reverse-HTTP proxy with some brains.  The idea is that the proxy itself will process some basic javascript in files with special markup (`<script runat="proxy">/* Some js */</script>`) and use the results to "mix" other resources in.  In the simplest use case, this provides "proxy-side includes".
 
+As a nice side effect of using Javascript, the functionality can be replicated in-browser, no actual proxy required.
+
+## Examples
+* A basic HTML page with some proxy side js: [page.html](http://github.com/mrkurt/proxy-mixer/blob/master/examples/page.html)
+
 ## More interesting scenarios
 Proxy side includes are somewhat interesting, but there's more!  The plan is to make requests for includes happen in parallel, and allow developers to define strict timeouts (and fallback messages) for each.  If you want to add a recommendation engine to a high volume site, and ensure that it won't slow down overall response times, this would give you the means to do that.
 
