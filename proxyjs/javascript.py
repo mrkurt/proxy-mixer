@@ -12,7 +12,7 @@ class Extractor:
 	def __init__(self, raw):
 		self.data = Extractor.__js_block.split(raw)
 		
-	def js(self):
+	def js(self, skip_mixer_helpers = False):
 		js = ''
 		js_instances = 0
 		in_script = False
@@ -27,8 +27,9 @@ class Extractor:
 				js += t + '\n'
 			else:
 				js += 'Mixer.append_raw_from_array(%s);\n' % i
-		js = 'var window = {};\n' + Extractor.__mixer_js_lib + '\n' + js
-		js += '\nMixer.output;'
+		if not skip_mixer_helpers:
+			js = 'var window = {};\n' + Extractor.__mixer_js_lib + '\n' + js
+			js += '\nMixer.output;'
 		return js
 		
 	def __extract_js_includes(self, chunk):

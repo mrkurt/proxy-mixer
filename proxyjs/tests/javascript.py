@@ -16,11 +16,11 @@ class TestExtractor(unittest.TestCase):
 		parser = Extractor(raw)
 		
 		if save_result:
-			open(target, 'w').write(parser.js())
+			open(target, 'w').write(parser.js(True))
 		
 		target = open(target, 'r').read()
 		
-		self.assertEqual(parser.js(), target)
+		self.assertEqual(parser.js(True), target)
 
 	def test_files(self):
 		for f in glob.glob(TestExtractor.fixtures + '*.html'):
