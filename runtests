@@ -2,8 +2,6 @@
 import unittest
 from proxyjs.tests import *
 
-javascript.TestExtractor.fixtures = './examples/'
-
 print "\nRunning Javascript Tests:"
 suite = unittest.TestLoader().loadTestsFromModule(javascript)
 unittest.TextTestRunner(verbosity=2).run(suite)

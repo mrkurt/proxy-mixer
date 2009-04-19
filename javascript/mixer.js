@@ -1,4 +1,3 @@
-var window = {};
 if(window.MixerOptions == undefined){
 	MixerOptions = {};
 	MixerOptions.mode = 'server';
@@ -50,6 +49,3 @@ if(window.Mixer == undefined){
 	
 	Mixer.options = MixerOptions == undefined ? {} : MixerOptions;
 }
-Mixer.append_raw_from_array(0);
-
-Mixer.output;

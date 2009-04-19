@@ -4,7 +4,7 @@ import glob
 from proxyjs.javascript import *
 
 class TestExtractor(unittest.TestCase):
-	fixtures = ''
+	fixtures = os.path.dirname(__file__) + '/../../examples/'
 	def test_simple_string(self):
 		raw = "<html>\n<head></head>\n<body>\n<script runat=\"proxy\">Mixer('test.html');</script>\n</body>\n</html>"
 		parser = Extractor(raw)
@@ -39,3 +39,9 @@ class TestExecution(unittest.TestCase):
 		result = Runner().run_js('var complex = { "kurt" : "rocks", "when" : ["mon", "tues", "fri"] };\ncomplex;')
 		self.assertEqual(result.kurt, "rocks")
 		self.assertEqual(len(result.when), 3)
+	
+	def test_mixer_file(self):
+		raw = open(TestExtractor.fixtures + 'page.html').read()
+		result = Runner(raw).assemble_result()
+		
+		print result
