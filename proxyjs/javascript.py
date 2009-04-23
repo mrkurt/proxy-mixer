@@ -49,6 +49,9 @@ class Runner:
 		if raw:
 			self.__extractor = Extractor(raw)
 
+	def set_extractor(self, extractor):
+		self.__extractor = extractor
+
 	def run_js(self, js = None):
 		if not js and self.__extractor:
 			js = self.__extractor.js()

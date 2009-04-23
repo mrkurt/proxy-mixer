@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+from timeit import Timer
+from proxyjs.javascript import Extractor, Runner
+
+
+src = './examples/page.html'
+raw = open(src, 'r').read()
+extractor = Extractor(raw)
+runner = Runner()
+runner.set_extractor(extractor)
+def do_exec():
+	runner.assemble_result()
+		
+def do_parse():
+	Extractor(raw).js()
+
+timer = Timer('do_exec()', 'from __main__ import do_exec')
+print "Executing Javascript takes: %s ms" % (min(timer.repeat(10000, 1)) * 1000)
+
+timer = Timer('do_parse()', 'from __main__ import do_parse')
+print "Parsing out Javascript takes: %s ms" % (min(timer.repeat(10000, 1)) * 1000)
